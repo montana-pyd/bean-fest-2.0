@@ -28,13 +28,20 @@ class DialogueScreen extends Component {
       "Press the [n] key to start!"
     ],
     5: [
-      "The second learning block is now complete. You may take a brief rest at this time. When you are ready, press the [n] key to continue."
+      "The first learning block is now complete. You may take a brief rest at this time. When you are ready, press the [n] key to continue."
     ],
     6: [
       "The next block of trials continues where you left off before.",
-      "Press the [n] key to start!"
+      "Press the [n] key to start!",
     ],
     7: [
+      "The second learning block is now complete. You may take a brief rest at this time. When you are ready, press the [n] key to continue."
+    ],
+    8: [
+      "The next block of trials continues where you left off before.",
+      "Press the [n] key to start!"
+    ],
+    9: [
       "In this final test phase of the experiment, you will be presented with the beans to which you were exposed earlier.  No point meter or feedback will be displayed.  In this part of the experiment, we simply want to know whether you believe a given bean to be good or bad. ",
       "Again, use the keyboard.  Press the [k] key (the one on the right) if this is a bean that you would select, i.e., one that you believe increases your points level. ",
       "Press the [d] key (the one on the left) if this is a bean that you would not select, i.e., one that you believe would decrease your points. ",
@@ -42,9 +49,9 @@ class DialogueScreen extends Component {
       "There is no practice block.  So be ready.",
       "Press the [n] key to continue."
     ],
-    8: [
+    10: [
       "You are now done with this part of the experiment.",
-      "Please let the experimenter know you are finished.",
+      "Please let the experimenter know you are finished."
     ]
   };
   render() {
