@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.scss';
+import DialogueScreen from './components/DialogueScreen';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        
+      <div className="BeanFest">
+        <DialogueScreen dialogue="1"/>
       </div>
     );
   }

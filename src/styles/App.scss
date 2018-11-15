@@ -1,0 +1,17 @@
+@import "colors";
+
+.BeanFest {
+  position: absolute;
+  height: 100%;
+  width: 80%;
+  left: 10%;
+  background-color: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Text {
+    position: relative;
+    margin-bottom: 20px;
+  }
+}
