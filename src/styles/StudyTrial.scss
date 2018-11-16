@@ -5,5 +5,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .Instructions {
+    position: absolute;
+    top: 20px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 60%;
+  }
   
 }
