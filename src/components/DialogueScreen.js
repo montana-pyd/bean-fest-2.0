@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./../styles/DialogueScreen.scss";
 import PropTypes from 'prop-types';
+import KeyCodes from './../util/KeyCodes';
 
 class DialogueScreen extends Component {
   dialogues = {
@@ -54,9 +55,23 @@ class DialogueScreen extends Component {
       "Please let the experimenter know you are finished."
     ]
   };
+  componentDidUpdate() {
+    this.refs.dialogue.focus();
+  }
+  componentDidMount() {
+    this.refs.dialogue.focus();
+  }
+  handleKeyDown(event) {
+    let keyCode = KeyCodes[event.which];
+    if (keyCode === 'n') {
+      this.props.goToNextScreen();
+    };
+  }
   render() {
     return (
-      <div className="DialogueScreen">
+      <div ref="dialogue"
+           className="DialogueScreen"
+           onKeyDown={event => this.handleKeyDown(event)} tabIndex="0">
         {this.dialogues[this.props.dialogue].map((d, i) => {
           return (
             <div className="Text" key={i}>
@@ -71,6 +86,7 @@ class DialogueScreen extends Component {
 
 DialogueScreen.propTypes = {
   dialogue: PropTypes.string.isRequired,
+  goToNextScreen: PropTypes.func.isRequired,
 };
 
 export default DialogueScreen;
