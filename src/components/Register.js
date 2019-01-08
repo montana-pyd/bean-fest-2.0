@@ -8,16 +8,17 @@ class Register extends Component {
     super();
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      firstName: 'Sam',
+      lastName: 'Heutmaker',
+      email: 'samheutmaker@gmail.com',
+      password: 'kingpin13',
       error: null,
     };
   }
   setField(value, field) {
     this.setState({
-      [field]: value
+      [field]: value,
+      error: null,
     });
   }
   register() {
@@ -25,7 +26,7 @@ class Register extends Component {
 
     client.register(firstName, lastName, email, password)
       .then(res => {
-        console.log(res);
+        this.props.history.push('/dashboard');
       })
       .catch(err => {
         this.setState({
@@ -51,10 +52,10 @@ class Register extends Component {
       }}>
         <div className="LargeText">Register below or <Link className="LargeText" to="/login">login</Link></div>
         <div className="LoginForm FlexColumn JustifyCenter AlignCenter">
-          <input autoFocus placeholder="First Name" onChange={e => this.setField(e.target.value, 'firstName')} type="text" />
-          <input placeholder="Last Name" onChange={e => this.setField(e.target.value, 'lastName')} type="text" />
-          <input placeholder="Email" onChange={e => this.setField(e.target.value, 'email')} type="text" />
-          <input placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
+          <input autoFocus value={this.state.firstName} placeholder="First Name" onChange={e => this.setField(e.target.value, 'firstName')} type="text" />
+          <input value={this.state.lastName} placeholder="Last Name" onChange={e => this.setField(e.target.value, 'lastName')} type="text" />
+          <input value={this.state.email} placeholder="Email" onChange={e => this.setField(e.target.value, 'email')} type="text" />
+          <input value={this.state.password} placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
           <div className="Button" onClick={() => this.register()}>
             Register
           </div>

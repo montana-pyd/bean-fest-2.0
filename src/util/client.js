@@ -82,7 +82,7 @@ class Client {
   }
   // Authentication
   register(firstName = '', lastName = '', email = '', password = '') {
-    return this.post('/researcher/login', {
+    return this.post('/researcher/register', {
       firstName,
       lastName,
       email,

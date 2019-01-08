@@ -2,6 +2,7 @@
   "name": "bean-fest-2.0",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",

@@ -8,14 +8,15 @@ class Login extends Component {
     super();
     
     this.state = {
-      email: '',
-      password: '',
+      email: 'samheutmaker@gmail.com',
+      password: 'kingpin13',
       error: null,
     };
   }
   setField(value, field) {
     this.setState({
-      [field]: value
+      [field]: value,
+      error: null,
     });
   }
   login() {
@@ -23,7 +24,7 @@ class Login extends Component {
 
     client.login(email, password)
     .then(res => {
-      console.log(res);
+      this.props.history.push("/dashboard");
     })
     .catch(err => {
       this.setState({
@@ -49,8 +50,8 @@ class Login extends Component {
       }}>
         <div className="LargeText">Login below or <Link className="LargeText" to="/register">register</Link></div>
         <div className="LoginForm FlexColumn JustifyCenter AlignCenter">
-          <input autoFocus placeholder="Email" onChange={e => this.setField(e.target.value, 'email')} type="text" />
-          <input placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
+          <input autoFocus value={this.state.email} placeholder="Email" onChange={e => this.setField(e.target.value, 'email')} type="text" />
+          <input value={this.state.password} placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
           <div className="Button" onClick={(() => this.login())}>
             Login
           </div>
