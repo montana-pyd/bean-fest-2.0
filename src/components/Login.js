@@ -8,8 +8,8 @@ class Login extends Component {
     super();
     
     this.state = {
-      email: 'samheutmaker@gmail.com',
-      password: 'kingpin13',
+      email: '',
+      password: '',
       error: null,
     };
   }
