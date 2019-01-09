@@ -69,6 +69,16 @@ input {
   word-spacing: 4px;
 }
 
+.SmallText {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $white;
+  word-spacing: 4px;
+  margin: 1rem 0;
+}
+
 
 .Button {
   height: 40px;

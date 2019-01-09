@@ -3,13 +3,12 @@ import './../styles/Login.scss';
 import { Link } from 'react-router-dom';
 import client from './../util/client';
 
-class Login extends Component {
+class CreateStudy extends Component {
   constructor() {
     super();
     
     this.state = {
-      email: 'samheutmaker@gmail.com',
-      password: 'kingpin13',
+      name: '',
       error: null,
     };
   }
@@ -19,11 +18,12 @@ class Login extends Component {
       error: null,
     });
   }
-  login() {
-    let { email, password } = this.state;
+  createStudy() {
+    let { name } = this.state;
 
-    client.login(email, password)
+    client.createStudy(name)
     .then(res => {
+      console.log(res);
       this.props.history.push("/dashboard/studies");
     })
     .catch(err => {
@@ -45,18 +45,14 @@ class Login extends Component {
     return (
       <div className='Login FlexColumn JustifyCenter AlignCenter' onKeyPress={e => {
         if (e.which === 13) {
-          this.login();
+          this.createStudy();
         }
       }}>
-        <div className="LargeText">Login below or <Link className="LargeText" to="/register">register</Link></div>
+        <div className="LargeText">Fill out the fields below to create a study.</div>
         <div className="LoginForm FlexColumn JustifyCenter AlignCenter">
-          <input autoFocus value={this.state.email} placeholder="Email" onChange={e => this.setField(e.target.value, 'email')} type="text" />
-          <input value={this.state.password} placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
-          <div className="Button" onClick={(() => this.login())}>
-            Login
-          </div>
-          <div className="Button" onClick={(() => this.props.history.push('/'))}>
-            Home
+          <input autoFocus value={this.state.name} placeholder="Study Name" onChange={e => this.setField(e.target.value, 'name')} type="text" />
+          <div className="Button" onClick={(() => this.createStudy())}>
+            Create Study
           </div>
           {this.renderError()}
         </div>
@@ -65,4 +61,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default CreateStudy;

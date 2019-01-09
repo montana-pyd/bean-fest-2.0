@@ -4,6 +4,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const researcherRoutes = require('./server/routes/researcherRoutes');
+const studyRoutes = require("./server/routes/studyRoutes");
+const trialRoutes = require("./server/routes/trialRoutes");
 const {
   MONGO_DB_HOST,
   MONGO_DB_PORT,
@@ -30,6 +32,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use("/researcher", researcherRoutes);
+app.use("/study", studyRoutes);
+app.use("/trial", trialRoutes);
 
 app.get('/ping', function (req, res) {
   return res.send('pong');

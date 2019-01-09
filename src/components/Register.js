@@ -26,7 +26,7 @@ class Register extends Component {
 
     client.register(firstName, lastName, email, password)
       .then(res => {
-        this.props.history.push('/dashboard');
+        this.props.history.push('/dashboard/studies');
       })
       .catch(err => {
         this.setState({
@@ -58,6 +58,9 @@ class Register extends Component {
           <input value={this.state.password} placeholder="Password" onChange={e => this.setField(e.target.value, 'password')} type="password" />
           <div className="Button" onClick={() => this.register()}>
             Register
+          </div>
+          <div className="Button" onClick={(() => this.props.history.push('/'))}>
+            Home
           </div>
           {this.renderError()}
         </div>

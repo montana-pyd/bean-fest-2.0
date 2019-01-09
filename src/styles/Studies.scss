@@ -1,0 +1,51 @@
+.Studies {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // padding-top: 100px;
+
+  .LargeText {
+    margin: 100px 0;
+  }
+
+  .StudiesTable {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px solid white;
+
+    .HeaderRow {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 2px solid white;
+    }
+
+    .TableItem {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .Row {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 2px solid white;
+      
+    }
+
+    .Flex2 {
+      flex: 2;
+    }
+
+    .FlexHalf {
+      flex: 0.5;
+    }
+  }
+}

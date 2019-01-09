@@ -4,9 +4,13 @@ import {
 } from './../env';
 
 class Client {
-  constructor(baseUrl = '') {
+  constructor(baseUrl = "") {
     this.baseUrl = baseUrl;
     this.token = null;
+    let token = localStorage.getItem("BEANFEST_TOKEN");
+    if (token) {
+      this.token = token;
+    }
   }
   // Internal
   _getUrl(slug) {
@@ -14,8 +18,8 @@ class Client {
   }
   _defaultHeaders() {
     let headers = {
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
+      "Content-Type": "application/json",
+      Accept: "application/json"
     };
     if (this.token) {
       headers.token = this.token;
@@ -23,6 +27,7 @@ class Client {
     return headers;
   }
   _setToken(token) {
+    localStorage.setItem("BEANFEST_TOKEN", token);
     this.token = token;
   }
   _handleError(error) {
@@ -40,7 +45,7 @@ class Client {
     throw msg;
   }
   // Requests
-  get(slug = '', query = {}, headers = {}) {
+  get(slug = "", query = {}, headers = {}) {
     return request
       .get(this._getUrl(slug))
       .query(query)
@@ -50,7 +55,7 @@ class Client {
       })
       .catch(this._handleHTTPError);
   }
-  post(slug = '', data = {}, headers = {}) {
+  post(slug = "", data = {}, headers = {}) {
     return request
       .post(this._getUrl(slug))
       .set({
@@ -60,7 +65,7 @@ class Client {
       .send(data)
       .catch(this._handleHTTPError);
   }
-  put(slug = '', data = {}, headers = {}) {
+  put(slug = "", data = {}, headers = {}) {
     return request
       .put(this._getUrl(slug))
       .set({
@@ -70,7 +75,7 @@ class Client {
       .send(data)
       .catch(this._handleHTTPError);
   }
-  delete(slug = '', data = {}, headers = {}) {
+  delete(slug = "", data = {}, headers = {}) {
     return request
       .delete(this._getUrl(slug))
       .set({
@@ -81,12 +86,12 @@ class Client {
       .catch(this._handleHTTPError);
   }
   // Authentication
-  register(firstName = '', lastName = '', email = '', password = '') {
-    return this.post('/researcher/register', {
+  register(firstName = "", lastName = "", email = "", password = "") {
+    return this.post("/researcher/register", {
       firstName,
       lastName,
       email,
-      password,
+      password
     })
       .then(res => {
         this._setToken(res.body.token);
@@ -97,10 +102,10 @@ class Client {
       })
       .catch(this._handleError);
   }
-  login(email = '', password = '') {
-    return this.post('/researcher/login', {
+  login(email = "", password = "") {
+    return this.post("/researcher/login", {
       email,
-      password,
+      password
     })
       .then(res => {
         this._setToken(res.body.token);
@@ -111,56 +116,45 @@ class Client {
       })
       .catch(this._handleError);
   }
-  // Vote
-  upVoteRoom(roomId) {
-    return this.post('/room/up-vote', {
-      roomId
+  // Study Routes
+  createStudy(name) {
+    return this.post("/study/create", {
+      name
     })
       .then(res => {
         return res.body;
       })
       .catch(this._handleError);
   }
-  downVoteRoom(roomId) {
-    return this.post('/room/down-vote', {
-      roomId
+  listStudies(){
+    
+    return this.get('/study/list')
+      .then(res => {
+        console.log("called client");
+        return res.body;
+      })
+      .catch(this._handleError);
+  }
+  // Trial Routes
+  startTrial(participantId, studyId) {
+    return this.post("/trial/start", {
+      participantId,
+      studyId,
     })
       .then(res => {
         return res.body;
       })
       .catch(this._handleError);
   }
-  // Rooms
-  createRoom(newRoom = {}) {
-    return this.post('/room/new', newRoom)
-      .then(res => res.body)
-      .catch(this._handleError);
-  }
-  createPrivateRoom(newRoom = {}) {
-    return this.post('/room/new/private', newRoom)
-    .then(res => res.body)
-    .catch(this._handleError);
-  }
-  listRooms(lat, lng) {
-    console.log(lat, lng);
-    return this.get('/room/list', {
-      lat,
-      lng
+  updateTrial(participantId, studyId, response) {
+    return this.post("/trial/update", {
+      participantId,
+      studyId,
+      response,
     })
       .then(res => {
         return res.body;
       })
-      .catch(this._handleError);
-  }
-  listPrivateRooms(){
-    return this.get('/room/list/private')
-    .then(res => res.body)
-    .catch(this._handleError);
-  }
-  // Messages
-  listMessages(roomId) {
-    return this.get(`/message/list/${roomId}`)
-      .then(res => res.body)
       .catch(this._handleError);
   }
 }

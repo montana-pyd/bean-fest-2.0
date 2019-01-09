@@ -15,7 +15,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "superagent": "^4.1.0"
+    "superagent": "^4.1.0",
+    "uuidv4": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

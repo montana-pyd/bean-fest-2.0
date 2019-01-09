@@ -5,7 +5,7 @@ const researcherSchema = new Schema({
     type: String,
     required: false
   },
-  lasttName: {
+  lastName: {
     type: String,
     required: false
   },
