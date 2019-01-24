@@ -15,7 +15,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div classname="Welcome FlexRow JustifyCenter AlignCenter">
+      <div>
         <h1>Welcome to BeanFest. Choose an opton below.</h1>
         <div className='WelcomeOptions FlexRow JustifyCenter AlignCenter'>
           <Link to="/study" className="Flex1 FlexRow JustifyCenter AlignCenter LargeText">

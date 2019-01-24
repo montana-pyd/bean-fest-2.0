@@ -127,7 +127,6 @@ class Client {
       .catch(this._handleError);
   }
   listStudies(){
-    
     return this.get('/study/list')
       .then(res => {
         console.log("called client");
