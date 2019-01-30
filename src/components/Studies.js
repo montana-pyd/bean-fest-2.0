@@ -55,7 +55,9 @@ class Dashboard extends Component {
               <div className="TableItem">{study.name}</div>
               <div className="TableItem Flex2">{study.studyId}</div>
               <div className="TableItem FlexHalf">{created}</div>
-              <div className="TableItem">Participant Count</div>
+              <div className="TableItem">
+                <a href={`/study/results/${study.studyId}`}>Download Study</a>
+              </div>
             </div>
           );
         })}

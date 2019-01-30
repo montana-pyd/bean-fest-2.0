@@ -3,6 +3,8 @@ const json = require('body-parser').json();
 const uuid = require("uuidv4");
 const Study = require('./../models/Study');
 const auth = require('./../util/authMiddleware');
+const Trial = require('./../models/Trial');
+const { Readable } = require("stream");
 
 const studyRoutes = module.exports = exports = express.Router();
 
@@ -15,7 +17,6 @@ studyRoutes.post('/create', auth, json, async (req, res) => {
   const {
     name,
   } = req.body;
-  
 
   let study = new Study();
   study.studyId = uuid();
@@ -45,4 +46,34 @@ studyRoutes.get('/list', auth, async(req, res) => {
   }
 
   res.status(200).json({ studies });
+});
+
+
+function getTrialResponseData(trial) {
+  return trial.responses.reduce((cur, next) => {
+    return cur + `${next.date} ${next.time} ${next.participantId} ${next.condition} ${next.block} ${next.nextrentTrial} ${next.response} ${next.responseTime} ${next.bean} ${next.currentBeanValue} \n`;
+  }, '');
+}
+
+studyRoutes.get('/results/:studyId', async(req, res) => {
+  let studyId = req.params.studyId;
+
+  let trials;
+  try {
+    trials = await Trial.find({
+      studyId,
+    });
+  } catch(e) {
+    return handleError(res, e); 
+  }
+  
+  let lines = trials.reduce((cur, next) => {
+    return cur + getTrialResponseData(next) + '\n\n\n\n\n';
+  }, '');
+
+  const s = new Readable();
+  s.push(lines);
+  s.push(null);
+
+  s.pipe(res);
 });
