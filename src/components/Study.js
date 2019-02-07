@@ -5,8 +5,8 @@ import DialogueScreen from './DialogueScreen';
 import StudyTrial from './StudyTrial';
 import oneRandom from './../util/oneRandom';
 import calculateBeanValue from './../util/calculateBeanValue';
-import { Link } from "react-router-dom";
 import client from "./../util/client";
+import KeyCodes from './../util/KeyCodes';
 
 import {
   learningGroup1,
@@ -23,14 +23,29 @@ class Study extends Component {
   constructor() {
     super();
     this.state = {
-      participantId: null,
-      studyId: null,
-      trial: null,
+      participantId: '',
+      studyId: '',
+      trial: '',
       currentStageIndex: 0,
       condition: 1,
-      score: 50,
+      score: 0,
       responses: [],
     };
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleKeyPress, false);
+  }
+  handleKeyPress(e) {
+    const { which } = e;
+    const key = KeyCodes[which];
+    const { score } = this.state;
+    if (key == 'n' && (0 >= score || score >= 100)) {
+      this.setState({
+        score: 50,
+      });
+    }
   }
   setField(value, field) {
     this.setState({
@@ -132,7 +147,7 @@ class Study extends Component {
       <DialogueScreen key={11} dialogue='8' goToNextScreen={this.goToNextScreen.bind(this)} />, // third block start -- continue where left off
       <StudyTrial key={12} score={this.state.score} beans={gameBeans} handleResponse={this.handleResponse.bind(this)} />, // learning block 3
       <DialogueScreen key={13} dialogue='9' goToNextScreen={this.goToNextScreen.bind(this)} />, // Final phase -- actual test
-      <StudyTrial key={14} score={this.state.score} beans={testBeans} handleResponse={this.handleResponse.bind(this)} />, // this is the test!
+      <StudyTrial key={14} score={this.state.score} beans={testBeans} handleResponse={this.handleResponse.bind(this)} hideScore={true} />, // this is the test!
       <DialogueScreen key={15} dialogue='10' goToNextScreen={this.goToNextScreen.bind(this)} /> // Goodbyee!
     ];
 
@@ -167,13 +182,28 @@ class Study extends Component {
       </div>
     );
   }
+  renderScoreReset() {
+    const { score } = this.state;
+
+    if(0 >= score || score >= 100) {
+      // if(true) {
+      return (
+        <div className="ScoreReset">
+          <div className="ResetText">{score > 50 ? 'Congratulations, you have won the game.' : 'Sorry, you have lost the game' }</div>
+          <div className="ResetText">Press the [n] key to start another game.</div>
+        </div>
+      );
+    }
+  }
   render() {
     if(!this.state.trial) {
       return this.renderStartTrial();
     }
 
+
     return (
       <div className='BeanFest'>
+        {this.renderScoreReset()}
         {this.renderStages(this.state.currentStageIndex)}
       </div>
     );

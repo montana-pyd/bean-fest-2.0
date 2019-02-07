@@ -51,7 +51,7 @@ studyRoutes.get('/list', auth, async(req, res) => {
 
 function getTrialResponseData(trial) {
   return trial.responses.reduce((cur, next) => {
-    return cur + `${next.date} ${next.time} ${next.participantId} ${next.condition} ${next.block} ${next.nextrentTrial} ${next.response} ${next.responseTime} ${next.bean} ${next.currentBeanValue} \n`;
+    return cur + `${trial.participantId} ${next.date} ${next.time} ${next.condition} ${next.block} ${next.currentTrial} ${next.response} ${next.responseTime} ${next.bean} ${next.currentBeanValue} \n`;
   }, '');
 }
 

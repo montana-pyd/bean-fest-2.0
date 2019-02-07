@@ -51,8 +51,8 @@ class DialogueScreen extends Component {
       "Press the [n] key to continue."
     ],
     10: [
-      "You are now done with this part of the experiment.",
-      "Please let the experimenter know you are finished."
+      "Thank you for participating in our research. You may now return to your survey.",
+      "Upon return, you will be asked to enter a keyword. Your keyword is BOOK."
     ]
   };
   componentDidUpdate() {

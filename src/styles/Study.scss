@@ -9,4 +9,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .ScoreReset {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .ResetText {
+        color: white;
+        font-size: 2rem;
+        position: relative;
+        margin-bottom: 20px;
+        width: 80%;
+      }
+  }
 }
+

@@ -47,7 +47,7 @@ class StudyTrial extends Component {
       <div ref="study" className="StudyTrial" onKeyDown={event => this.handleKeyDown(event)} tabIndex="0">
         {this.renderInstructions()}
         <img alt={source} src={source} />
-        <Score score={this.props.score} />
+        {this.props.hideScore ? null : <Score score={this.props.score} />}
       </div>
     );
   }
@@ -57,6 +57,7 @@ StudyTrial.propTypes = {
   beans: PropTypes.array.isRequired,
   handleResponse: PropTypes.func.isRequired,
   score: PropTypes.number.isRequired,
+  hideScore: PropTypes.bool,
 };
 
 export default StudyTrial;
