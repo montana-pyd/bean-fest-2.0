@@ -28,7 +28,7 @@ class Study extends Component {
       trial: '',
       currentStageIndex: 0,
       condition: 1,
-      score: 0,
+      score: 50,
       responses: [],
     };
 
