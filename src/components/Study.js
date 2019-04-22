@@ -136,18 +136,18 @@ class Study extends Component {
         oneRandom(learningGroup4),
         oneRandom(learningGroup5),
         oneRandom(learningGroup6),
-      ]} handleResponse={this.handleResponse.bind(this)} />, // test
+      ]} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} />, // test
       <DialogueScreen key={4} dialogue='3' goToNextScreen={this.goToNextScreen.bind(this)} />, // pracitce blocks complete
       <DialogueScreen key={5} dialogue='4' goToNextScreen={this.goToNextScreen.bind(this)} />, // learning phase 1
-      <StudyTrial key={6} score={this.state.score} beans={gameBeans} handleResponse={this.handleResponse.bind(this)} />, // learning block 1
+      <StudyTrial key={6} score={this.state.score} beans={gameBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} />, // learning block 1
       <DialogueScreen key={7} dialogue='5' goToNextScreen={this.goToNextScreen.bind(this)} />, // first learning block complete -- take a break
       <DialogueScreen key={8} dialogue='6' goToNextScreen={this.goToNextScreen.bind(this)} />, // second learning block - continue where left off
-      <StudyTrial key={9} score={this.state.score} beans={gameBeans} handleResponse={this.handleResponse.bind(this)} />, // learning block 2
+      <StudyTrial key={9} score={this.state.score} beans={gameBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} />, // learning block 2
       <DialogueScreen key={10} dialogue='7' goToNextScreen={this.goToNextScreen.bind(this)} />, // second block complete -- take a break
       <DialogueScreen key={11} dialogue='8' goToNextScreen={this.goToNextScreen.bind(this)} />, // third block start -- continue where left off
-      <StudyTrial key={12} score={this.state.score} beans={gameBeans} handleResponse={this.handleResponse.bind(this)} />, // learning block 3
+      <StudyTrial key={12} score={this.state.score} beans={gameBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} />, // learning block 3
       <DialogueScreen key={13} dialogue='9' goToNextScreen={this.goToNextScreen.bind(this)} />, // Final phase -- actual test
-      <StudyTrial key={14} score={this.state.score} beans={testBeans} handleResponse={this.handleResponse.bind(this)} hideScore={true} />, // this is the test!
+      <StudyTrial key={14} score={this.state.score} beans={testBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} hideScore={true} />, // this is the test!
       <DialogueScreen key={15} dialogue='10' goToNextScreen={this.goToNextScreen.bind(this)} /> // Goodbyee!
     ];
 
