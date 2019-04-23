@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 const jwt = require("jsonwebtoken");
 const {
   JWT_SECRET

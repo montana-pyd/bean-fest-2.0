@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import {
   learningGroup1,
   learningGroup2,

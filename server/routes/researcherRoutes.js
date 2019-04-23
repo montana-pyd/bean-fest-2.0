@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 const express = require('express');
 const json = require('body-parser').json();
 const Researcher = require('./../models/Researcher');

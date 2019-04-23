@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import request from 'superagent'
 import {
   API_URL

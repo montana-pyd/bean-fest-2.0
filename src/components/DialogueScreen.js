@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from "react";
 import "./../styles/DialogueScreen.scss";
 import PropTypes from 'prop-types';

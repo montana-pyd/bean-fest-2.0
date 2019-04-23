@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 export default function oneRandom(array) {
   let random = getRandomInt(0, array.length -1 );
   return array[random];

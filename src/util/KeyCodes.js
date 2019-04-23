@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 const KeyCodes = {
   '65':	'a',
   '66':	'b',

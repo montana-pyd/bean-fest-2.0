@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from 'react';
 import './../styles/Login.scss';
 import { Link } from 'react-router-dom';

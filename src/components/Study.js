@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from 'react';
 import './../styles/Study.scss';
 import "./../styles/Login.scss";
@@ -7,7 +11,6 @@ import oneRandom from './../util/oneRandom';
 import calculateBeanValue from './../util/calculateBeanValue';
 import client from "./../util/client";
 import KeyCodes from './../util/KeyCodes';
-
 import {
   learningGroup1,
   learningGroup2,
@@ -18,6 +21,22 @@ import {
   gameBeans,
   testBeans,
 } from './../util/BeanGroups';
+
+
+// Shuffle all the beans
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+
+shuffle(learningGroup1);
+shuffle(learningGroup2);
+shuffle(learningGroup3);
+shuffle(learningGroup4);
+shuffle(learningGroup5);
+shuffle(learningGroup6);
+shuffle(gameBeans);
+shuffle(testBeans);
 
 class Study extends Component {
   constructor() {
@@ -147,7 +166,7 @@ class Study extends Component {
       <DialogueScreen key={11} dialogue='8' goToNextScreen={this.goToNextScreen.bind(this)} />, // third block start -- continue where left off
       <StudyTrial key={12} score={this.state.score} beans={gameBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} />, // learning block 3
       <DialogueScreen key={13} dialogue='9' goToNextScreen={this.goToNextScreen.bind(this)} />, // Final phase -- actual test
-      <StudyTrial key={14} score={this.state.score} beans={testBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} hideScore={true} />, // this is the test!
+      <StudyTrial key={14} testPhase={true} score={this.state.score} beans={testBeans} condition={this.state.condition} handleResponse={this.handleResponse.bind(this)} hideScore={true} />, // this is the test!
       <DialogueScreen key={15} dialogue='10' goToNextScreen={this.goToNextScreen.bind(this)} /> // Goodbyee!
     ];
 

@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React from 'react';
 
 import ReactDOM from 'react-dom';

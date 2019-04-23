@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import * as Beans from './Beans';
 
 export const learningGroup1 = [Beans.bean1, Beans.bean2, Beans.bean11, Beans.bean12, Beans.bean21];

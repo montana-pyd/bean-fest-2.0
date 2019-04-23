@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 export const bean1 = '01BY01.jpg';
 export const bean2 = '02BY01.jpg';
 export const bean3 = '03BY01.jpg';

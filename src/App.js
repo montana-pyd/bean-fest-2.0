@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Welcome from "./components/Welcome";

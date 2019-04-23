@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 const { Schema, model } = require('mongoose');
 
 const trialSchema = new Schema({

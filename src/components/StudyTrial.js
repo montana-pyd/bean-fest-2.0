@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from "react";
 import "./../styles/StudyTrial.scss";
 import PropTypes from "prop-types";
@@ -24,13 +28,13 @@ class StudyTrial extends Component {
     this.refs.study.focus();
   }
   componentWillReceiveProps() {
-    console.log('hit');
     // Advance after 5000ms
     let timeout = setTimeout(() => {
-      console.log('FIE');
+      this.clearTimeouts();
       let beansLeft = (this.props.beans.length - 1) - this.state.currentBeanIndex;
       this.props.handleResponse('XXX', this.props.beans[this.state.currentBeanIndex], this.state.currentBeanIndex, 5000, beansLeft);
-      clearTimeout(timeout);
+      
+      if(beansLeft === 0) return;
       this.setState({
         currentBeanIndex: this.state.currentBeanIndex + 1,
         startTime: Date.now(),
@@ -40,10 +44,20 @@ class StudyTrial extends Component {
       });
     }, 5000);
 
-    if (!this.state.timeout) {
-      this.setState({
-        timeout,
-      });
+    
+    this.setState({
+      timeout,
+    });
+    
+  }
+  componentWillUnmount(){
+    this.clearTimeouts();
+  }
+  clearTimeouts() {
+    var id = window.setTimeout(function () { }, 0);
+
+    while (id--) {
+      window.clearTimeout(id); // will do nothing if no timeout with id is present
     }
   }
   handleKeyDown(event){
@@ -51,7 +65,7 @@ class StudyTrial extends Component {
     let key = KeyCodes[event.which];
     if(key === 'd' || key === 'k') {
       let currentBeanValue = calculateBeanValue(this.props.condition, this.props.beans[this.state.currentBeanIndex]);
-      clearTimeout(this.state.timeout);
+      this.clearTimeouts();
       this.setState({
         waiting: true,
         timeout: null,
@@ -64,6 +78,8 @@ class StudyTrial extends Component {
            let beansLeft = (this.props.beans.length - 1) - this.state.currentBeanIndex;
            this.props.handleResponse(key, this.props.beans[this.state.currentBeanIndex], this.state.currentBeanIndex, responseTime, beansLeft);
            
+           if (beansLeft === 0 ) return;
+
            this.setState({
              currentBeanIndex: this.state.currentBeanIndex + 1,
              startTime: Date.now(),

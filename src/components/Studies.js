@@ -1,3 +1,7 @@
+/**
+ * Author: Sam Heutmaker [samheutmaker@gmail.com]
+ */
+
 import React, { Component } from 'react';
 import './../styles/Studies.scss';
 import client from "./../util/client";
