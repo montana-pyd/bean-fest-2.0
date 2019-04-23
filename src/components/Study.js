@@ -105,7 +105,7 @@ class Study extends Component {
     });
   }
   handleResponse(response, bean, beanIndex, responseTime, beansLeft) {
-    let currentBeanValue = calculateBeanValue(this.state.condition, bean);
+    let currentBeanValue = response !== 'XXX' ? calculateBeanValue(this.state.condition, bean) : 0;
     let score = this.state.score + (response === "d" ? 0 : currentBeanValue);
     let responses = [ ...this.state.responses ];
 
