@@ -18,6 +18,7 @@ class StudyTrial extends Component {
       startTime: Date.now(),
       waiting: false,
       currentBeanValue: null,
+      currentBeanSelected: null,
       timeout: null,
     };
   }
@@ -40,6 +41,7 @@ class StudyTrial extends Component {
         startTime: Date.now(),
         waiting: false,
         currentBeanValue: null,
+        currentBeanSelected: null,
         timeout: null,
       });
     }, 5000);
@@ -70,6 +72,7 @@ class StudyTrial extends Component {
         waiting: true,
         timeout: null,
         currentBeanValue,
+        currentBeanSelected: key === 'k' ? true : false,
       }, () => {
          setTimeout(() => {
            let startTime = this.state.startTime;
@@ -85,6 +88,8 @@ class StudyTrial extends Component {
              startTime: Date.now(),
              waiting: false,
              currentBeanValue: null,
+             currentBeanSelected: null,
+             
            });
          }, 3000);
       });
@@ -114,7 +119,8 @@ class StudyTrial extends Component {
         {this.renderInstructions()}
         <img alt={source} src={source} />
         {this.props.hideScore ? null : <Score score={this.props.score} />}
-        {this.state.waiting ? <SelectionDetails currentBeanValue={this.state.currentBeanValue}/> : null }
+        {this.state.waiting ? <SelectionDetails currentBeanSelected={this.state.currentBeanSelected} 
+                                                currentBeanValue={this.state.currentBeanValue}/> : null }
       </div>
     );
   }
